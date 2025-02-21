@@ -6,8 +6,9 @@ export class PointButton extends ShapeButton implements ButtonBuilder {
         return super.createButton('POINT', this.createPoint.bind(this));
     }
 
-    private createPoint(): void {
-        const line = this.canvas.svgContainer.circle(5).fill('black');
+    private createPoint() {
+        const line = this.canvas.svgContainer
+            .circle(2).fill('black');
         this.canvas.storeShape(line);
     }
 }

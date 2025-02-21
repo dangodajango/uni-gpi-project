@@ -4,6 +4,7 @@ import { RectangleButton } from './buttons/RectangleButton';
 import { LineButton } from './buttons/LineButton';
 import { EllipseButton } from './buttons/EllipseButton';
 import { PointButton } from './buttons/PointButton';
+import { TriangleButton } from './buttons/TriangleButton';
 
 export class DefaultShapeMenu extends ShapeMenu {
     constructor(canvas: Canvas) {
@@ -11,7 +12,8 @@ export class DefaultShapeMenu extends ShapeMenu {
             new RectangleButton(canvas),
             new LineButton(canvas),
             new EllipseButton(canvas),
-            new PointButton(canvas)
+            new PointButton(canvas),
+            new TriangleButton(canvas)
         );
     }
 }

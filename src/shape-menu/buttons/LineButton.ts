@@ -6,11 +6,8 @@ export class LineButton extends ShapeButton implements ButtonBuilder {
         return super.createButton('LINE', this.createLine.bind(this));
     }
 
-    private createLine(): void {
-        const line = this.canvas.svgContainer.line(50, 50, 100, 100).stroke({
-            width: 2,
-            color: 'black',
-        });
+    private createLine() {
+        const line = this.canvas.svgContainer.line(50, 50, 100, 100);
         this.canvas.storeShape(line);
     }
 }
