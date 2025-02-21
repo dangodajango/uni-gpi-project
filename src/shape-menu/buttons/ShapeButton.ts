@@ -1,4 +1,4 @@
-import { Canvas } from '../canvas/canvas';
+import { Canvas } from '../../canvas/Canvas';
 
 export class ShapeButton {
     constructor(protected readonly canvas: Canvas) {}

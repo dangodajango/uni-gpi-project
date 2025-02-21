@@ -1,7 +1,8 @@
 import { ShapeButton } from './ShapeButton';
+import { ButtonBuilder } from './ButtonBuilder';
 
-export class PointButton extends ShapeButton {
-    public createButton(): HTMLButtonElement {
+export class PointButton extends ShapeButton implements ButtonBuilder {
+    buildButton() {
         return super.createButton('POINT', this.createPoint.bind(this));
     }
 

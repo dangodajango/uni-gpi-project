@@ -1,7 +1,8 @@
 import { ShapeButton } from './ShapeButton';
+import { ButtonBuilder } from './ButtonBuilder';
 
-export class EllipseButton extends ShapeButton {
-    public createButton(): HTMLButtonElement {
+export class EllipseButton extends ShapeButton implements ButtonBuilder {
+    buildButton() {
         return super.createButton('ELLIPSE', this.createEllipse.bind(this));
     }
 
