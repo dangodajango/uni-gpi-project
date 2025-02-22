@@ -1,5 +1,6 @@
 import { ShapeButton } from './ShapeButton';
 import { ButtonBuilder } from './ButtonBuilder';
+import { Triangle } from '../../shape/Triangle';
 
 export class TriangleButton extends ShapeButton implements ButtonBuilder {
     buildButton() {
@@ -7,9 +8,7 @@ export class TriangleButton extends ShapeButton implements ButtonBuilder {
     }
 
     private createTriangle() {
-        const triangle = this.canvas.svgContainer.polygon(
-            '50,50 150,50 100,150'
-        );
+        const triangle = new Triangle(this.canvas.svgContainer);
         this.canvas.storeShape(triangle);
     }
 }

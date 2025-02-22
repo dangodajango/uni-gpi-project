@@ -1,5 +1,6 @@
 import { ShapeButton } from './ShapeButton';
 import { ButtonBuilder } from './ButtonBuilder';
+import { Line } from '../../shape/Line';
 
 export class LineButton extends ShapeButton implements ButtonBuilder {
     buildButton() {
@@ -7,7 +8,7 @@ export class LineButton extends ShapeButton implements ButtonBuilder {
     }
 
     private createLine() {
-        const line = this.canvas.svgContainer.line(50, 50, 100, 100);
+        const line = new Line(this.canvas.svgContainer);
         this.canvas.storeShape(line);
     }
 }

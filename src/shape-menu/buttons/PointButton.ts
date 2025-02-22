@@ -1,5 +1,6 @@
 import { ShapeButton } from './ShapeButton';
 import { ButtonBuilder } from './ButtonBuilder';
+import { Point } from '../../shape/Point';
 
 export class PointButton extends ShapeButton implements ButtonBuilder {
     buildButton() {
@@ -7,8 +8,7 @@ export class PointButton extends ShapeButton implements ButtonBuilder {
     }
 
     private createPoint() {
-        const line = this.canvas.svgContainer
-            .circle(2).fill('black');
-        this.canvas.storeShape(line);
+        const point = new Point(this.canvas.svgContainer);
+        this.canvas.storeShape(point);
     }
 }

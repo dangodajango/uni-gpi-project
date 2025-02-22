@@ -1,5 +1,6 @@
 import { ShapeButton } from './ShapeButton';
 import { ButtonBuilder } from './ButtonBuilder';
+import { Rectangle } from '../../shape/Rectangle';
 
 export class RectangleButton extends ShapeButton implements ButtonBuilder {
     buildButton() {
@@ -7,8 +8,7 @@ export class RectangleButton extends ShapeButton implements ButtonBuilder {
     }
 
     private createRectangle() {
-        const rectangle = this.canvas.svgContainer.rect(100, 50);
-        rectangle.on('click', (event) => console.log('clicked', event));
+        const rectangle = new Rectangle(this.canvas.svgContainer);
         this.canvas.storeShape(rectangle);
     }
 }

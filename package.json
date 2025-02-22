@@ -17,6 +17,7 @@
     "vite": "^6.1.1"
   },
   "dependencies": {
-    "@svgdotjs/svg.js": "^3.2.4"
+    "@svgdotjs/svg.js": "^3.2.4",
+    "nanoid": "^5.1.0"
   }
 }

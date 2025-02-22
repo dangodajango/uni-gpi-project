@@ -1,5 +1,6 @@
 import { ShapeButton } from './ShapeButton';
 import { ButtonBuilder } from './ButtonBuilder';
+import { Ellipse } from '../../shape/Ellipse';
 
 export class EllipseButton extends ShapeButton implements ButtonBuilder {
     buildButton() {
@@ -7,7 +8,7 @@ export class EllipseButton extends ShapeButton implements ButtonBuilder {
     }
 
     private createEllipse() {
-        const ellipse = this.canvas.svgContainer.ellipse(50, 80);
+        const ellipse = new Ellipse(this.canvas.svgContainer);
         this.canvas.storeShape(ellipse);
     }
 }

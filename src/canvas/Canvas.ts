@@ -1,4 +1,5 @@
-import { Shape, Svg, SVG } from '@svgdotjs/svg.js';
+import { Svg, SVG } from '@svgdotjs/svg.js';
+import { Shape } from '../shape/Shape';
 
 export class Canvas {
     svgContainer: Svg;
