@@ -22,6 +22,18 @@ export class Shape {
         public readonly fill: Fill = Shape.DEFAULT_FILL
     ) {}
 
+    addEventListener(event: string, callback: (event: Event) => void) {
+        if (this.shape) {
+            this.shape.on(event, callback);
+        }
+    }
+
+    removeEventListener() {
+        if (this.shape) {
+            this.shape.removeEventListener();
+        }
+    }
+
     scale(factor: number) {
         if (this.shape) {
             this.shape.scale(factor);
@@ -46,6 +58,10 @@ export class Shape {
             this.rotate(0);
             this.skew(0, 0);
         }
+    }
+
+    get properties(): { [key: string]: string | number } {
+        return {};
     }
 }
 

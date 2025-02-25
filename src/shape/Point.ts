@@ -6,7 +6,7 @@ export class Point extends Shape {
     constructor(
         svgContainer: Svg,
         stroke?: Stroke,
-        fill?: Fill,
+        fill: Fill = { color: 'black', opacity: 1 },
         name: string = `point-${generateRandomIdentifier()}`
     ) {
         super(svgContainer, name, stroke, fill);

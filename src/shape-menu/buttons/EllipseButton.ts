@@ -1,8 +1,8 @@
-import { ShapeButton } from './ShapeButton';
-import { ButtonBuilder } from './ButtonBuilder';
+import { GenericButton } from '../../common/GenericButton';
+import { ButtonBuilder } from '../../common/ButtonBuilder';
 import { Ellipse } from '../../shape/Ellipse';
 
-export class EllipseButton extends ShapeButton implements ButtonBuilder {
+export class EllipseButton extends GenericButton implements ButtonBuilder {
     buildButton() {
         return super.createButton('ELLIPSE', this.createEllipse.bind(this));
     }

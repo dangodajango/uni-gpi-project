@@ -1,8 +1,8 @@
-import { ShapeButton } from './ShapeButton';
-import { ButtonBuilder } from './ButtonBuilder';
+import { GenericButton } from '../../common/GenericButton';
+import { ButtonBuilder } from '../../common/ButtonBuilder';
 import { Rectangle } from '../../shape/Rectangle';
 
-export class RectangleButton extends ShapeButton implements ButtonBuilder {
+export class RectangleButton extends GenericButton implements ButtonBuilder {
     buildButton() {
         return super.createButton('RECTANGLE', this.createRectangle.bind(this));
     }

@@ -1,6 +1,6 @@
-import { Canvas } from '../../canvas/Canvas';
+import { Canvas } from '../canvas/Canvas';
 
-export class ShapeButton {
+export class GenericButton {
     constructor(protected readonly canvas: Canvas) {}
 
     protected createButton(
