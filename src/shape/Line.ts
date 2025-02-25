@@ -3,12 +3,7 @@ import { Svg } from '@svgdotjs/svg.js';
 import { generateRandomIdentifier } from '../utils/RandomIdentifierGenerator';
 
 export class Line extends Shape {
-    constructor(
-        svgContainer: Svg,
-        stroke?: Stroke,
-        fill?: Fill,
-        name: string = `line-${generateRandomIdentifier()}`
-    ) {
+    constructor(svgContainer: Svg, stroke?: Stroke, fill?: Fill, name: string = `line-${generateRandomIdentifier()}`) {
         super(svgContainer, name, stroke, fill);
         this.shape = this.svgContainer
             .line(50, 50, 100, 100)

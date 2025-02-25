@@ -1,8 +1,15 @@
 import { Shape } from '../../shape/Shape';
+import { ShapeDetailsSection } from '../../shape-details/ShapeDetailsSection';
 
 export class SelectService {
+    constructor(private readonly shapeDetailsSection: ShapeDetailsSection) {}
+
     private currentlySelectedShapes: Shape[] = [];
 
+    /**
+     * If shift key is pressed, it means - multiple shapes will be selected.
+     * If shift key is not pressed, it means - only a single shape will be selected.
+     */
     configureEventListener(shape: Shape) {
         shape.addEventListener('click', (event) => {
             if (event instanceof MouseEvent) {
@@ -12,6 +19,7 @@ export class SelectService {
                     this.currentlySelectedShapes = [];
                     this.selectShapes(shape);
                 }
+                this.shapeDetailsSection.updateSection(this.currentlySelectedShapes);
             }
         });
     }
@@ -28,5 +36,9 @@ export class SelectService {
                 this.currentlySelectedShapes.push(shape);
             }
         }
+    }
+
+    clear() {
+        this.currentlySelectedShapes = [];
     }
 }
