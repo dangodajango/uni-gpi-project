@@ -18,15 +18,34 @@ export class Ellipse extends Shape {
     }
 
     get properties(): Property {
-        const ellipse = this.shape as SvgEllipse;
-        return { ...super.properties };
-        // return {
-        //     width: ellipse.width(),
-        //     height: ellipse.height(),
-        //     rx: ellipse.rx(),
-        //     ry: ellipse.ry(),
-        // };
+        return { ...this.radiusX, ...this.radiusY, ...super.properties };
     }
 
-    set properties(properties: { [key: string]: any }) {}
+    get radiusX(): Property {
+        const ellipse = this.shape as SvgEllipse;
+        return {
+            radiusX: {
+                getProperty: () => ellipse.attr('rx'),
+                setProperty: (radiusX: string) => {
+                    const radiusY = ellipse.attr('ry');
+                    ellipse.radius(Number(radiusX), Number(radiusY));
+                },
+                type: 'number',
+            },
+        };
+    }
+
+    get radiusY(): Property {
+        const ellipse = this.shape as SvgEllipse;
+        return {
+            radiusY: {
+                getProperty: () => ellipse.attr('ry'),
+                setProperty: (radiusY: string) => {
+                    const radiusX = ellipse.attr('rx');
+                    ellipse.radius(Number(radiusX), Number(radiusY));
+                },
+                type: 'number',
+            },
+        };
+    }
 }

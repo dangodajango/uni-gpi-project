@@ -35,7 +35,29 @@ export class Shape {
     }
 
     get properties(): Property {
-        return { ...this.rotate, ...this.scale, ...this.skew };
+        return { ...this.x, ...this.y, ...this.rotate, ...this.scale, ...this.skew };
+    }
+
+    get x(): Property {
+        const shape = this.shape!;
+        return {
+            x: {
+                getProperty: () => shape.x(),
+                setProperty: (x: string) => shape.move(Number(x), shape.y()),
+                type: 'number',
+            },
+        };
+    }
+
+    get y(): Property {
+        const shape = this.shape!;
+        return {
+            y: {
+                getProperty: () => shape.y(),
+                setProperty: (y: string) => shape.move(shape.x(), Number(y)),
+                type: 'number',
+            },
+        };
     }
 
     private get scale(): Property {
