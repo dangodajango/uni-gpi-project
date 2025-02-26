@@ -1,5 +1,5 @@
 import { Ellipse as SvgEllipse, Svg } from '@svgdotjs/svg.js';
-import { Fill, Shape, Stroke } from './Shape';
+import { Fill, Property, Shape, Stroke } from './Shape';
 import { generateRandomIdentifier } from '../utils/RandomIdentifierGenerator';
 
 export class Ellipse extends Shape {
@@ -17,14 +17,15 @@ export class Ellipse extends Shape {
         this.shape.id(this.name);
     }
 
-    get properties(): { [key: string]: any } {
-        const ellipse = this.shape! as SvgEllipse;
-        return {
-            width: ellipse.width(),
-            height: ellipse.height(),
-            rx: ellipse.rx(),
-            ry: ellipse.ry(),
-        };
+    get properties(): Property {
+        const ellipse = this.shape as SvgEllipse;
+        return { ...super.properties };
+        // return {
+        //     width: ellipse.width(),
+        //     height: ellipse.height(),
+        //     rx: ellipse.rx(),
+        //     ry: ellipse.ry(),
+        // };
     }
 
     set properties(properties: { [key: string]: any }) {}

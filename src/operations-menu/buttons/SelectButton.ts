@@ -2,9 +2,15 @@ import { ButtonBuilder } from '../../common/ButtonBuilder';
 import { SelectService } from '../service/SelectService';
 import { GenericButton } from '../../common/GenericButton';
 import { ShapeDetailsSection } from '../../shape-details/ShapeDetailsSection';
+import { Canvas } from '../../canvas/Canvas';
 
 export class SelectButton extends GenericButton implements ButtonBuilder {
-    private readonly selectService: SelectService = new SelectService(new ShapeDetailsSection());
+    private readonly selectService: SelectService;
+
+    constructor(canvas: Canvas, shapeDetailsSection: ShapeDetailsSection) {
+        super(canvas);
+        this.selectService = new SelectService(shapeDetailsSection);
+    }
 
     private isSelectingEnabled: boolean = false;
 

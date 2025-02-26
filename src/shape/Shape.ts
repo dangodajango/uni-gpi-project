@@ -34,34 +34,61 @@ export class Shape {
         }
     }
 
-    scale(factor: number) {
-        if (this.shape) {
-            this.shape.scale(factor);
+    get properties(): Property {
+        return { ...this.rotate, ...this.scale, ...this.skew };
+    }
+
+    private get scale(): Property {
+        const shape = this.shape!;
+        return {
+            scale: {
+                getProperty: () => shape.transform().scaleX,
+                setProperty: (factor: string) => shape.scale(Number(factor)),
+                type: 'number',
+            },
+        };
+    }
+
+    private get rotate(): Property {
+        const shape = this.shape!;
+        return {
+            rotate: {
+                getProperty: () => calculateCurrentRotation(shape),
+                setProperty: (angle: string) => shape.rotate(Number(angle)),
+                type: 'number',
+            },
+        };
+
+        function calculateCurrentRotation(shape: SvgShape) {
+            const transform = shape.transform();
+            if (transform.b && transform.a) {
+                const angle = Math.atan2(transform.b, transform.a) * (180 / Math.PI);
+                return Math.round(angle) || 0;
+            }
+            return 0;
         }
     }
 
-    rotate(angle: number) {
-        if (this.shape) {
-            this.shape.rotate(angle);
-        }
-    }
+    private get skew(): Property {
+        const shape = this.shape!;
+        return {
+            skew: {
+                getProperty: () => calculateCurrentSkew(shape),
+                setProperty: (angle: string) => {
+                    shape.skew(Number(angle));
+                },
+                type: 'number',
+            },
+        };
 
-    skew(angleX: number, angleY: number) {
-        if (this.shape) {
-            this.shape.skew(angleX, angleY);
+        function calculateCurrentSkew(shape: SvgShape) {
+            const transform = shape.transform();
+            if (transform.b) {
+                const skew = Math.atan(transform.b) * (180 / Math.PI);
+                return Math.round(skew);
+            }
+            return 0;
         }
-    }
-
-    reset() {
-        if (this.shape) {
-            this.scale(1);
-            this.rotate(0);
-            this.skew(0, 0);
-        }
-    }
-
-    get properties(): { [key: string]: string | number } {
-        return {};
     }
 }
 
@@ -74,4 +101,12 @@ export type Stroke = {
 export type Fill = {
     color: string;
     opacity: number;
+};
+
+export type Property = {
+    [key: string]: {
+        getProperty: () => any;
+        setProperty: (value: any) => void;
+        type: string;
+    };
 };

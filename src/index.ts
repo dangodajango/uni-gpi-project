@@ -1,6 +1,7 @@
 import { Canvas } from './canvas/Canvas';
 import { DefaultShapeMenu } from './shape-menu/DefaultShapeMenu';
 import { DefaultOperationMenu } from './operations-menu/DefaultOperationMenu';
+import { ShapeDetailsSection } from './shape-details/ShapeDetailsSection';
 
 const body = document.querySelector('body')!;
 
@@ -12,7 +13,10 @@ canvasSection.append(canvas.buildCanvas());
 const shapeMenu = new DefaultShapeMenu(canvas);
 canvasSection.append(shapeMenu.buildMenu());
 
-const operationMenu = new DefaultOperationMenu(canvas);
+const shapeDetailsSection = new ShapeDetailsSection();
+canvasSection.append(shapeDetailsSection.buildShapeDetailsSection());
+
+const operationMenu = new DefaultOperationMenu(canvas, shapeDetailsSection);
 canvasSection.append(operationMenu.buildMenu());
 
 body.append(canvasSection);
