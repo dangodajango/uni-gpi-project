@@ -1,7 +1,9 @@
 import { Shape } from '../shape/Shape';
+import { ShapeDetailsElement } from './ShapeDetailsElement';
 
 export class ShapeDetailsSection {
     private shapeDetailsSection!: HTMLUListElement;
+    private shapeDetailsElements: ShapeDetailsElement[] = [];
 
     buildShapeDetailsSection() {
         this.shapeDetailsSection = document.createElement('ul');
@@ -10,33 +12,17 @@ export class ShapeDetailsSection {
     }
 
     updateSection(shapes: Shape[]) {
-        const updatedElements = shapes.map((shape) => this.createShapeDetailsDomElement(shape));
-        this.shapeDetailsSection.replaceChildren(...updatedElements);
-    }
-
-    private createShapeDetailsDomElement(shape: Shape) {
-        const li = document.createElement('li');
-        for (const property in shape.properties) {
-            const propertyAccessors = shape.properties[property];
-
-            const div = document.createElement('div');
-            const input = document.createElement('input');
-            const label = document.createElement('label');
-            label.textContent = `${property}: ${propertyAccessors.getProperty()}`;
-
-            input.type = propertyAccessors.type;
-            input.addEventListener('change', (event) => {
-                const target = event.target as HTMLInputElement;
-                propertyAccessors.setProperty(target.value);
-                label.textContent = `${property}: ${propertyAccessors.getProperty()}`;
-            });
-
-            input.id = `${property}-${shape.name}`;
-            label.setAttribute('for', input.id);
-
-            div.append(label, input);
-            li.append(div);
+        const shapeDetailsElements: ShapeDetailsElement[] = [];
+        for (const shape of shapes) {
+            const shapeDetailsElement = this.shapeDetailsElements.find((element) => element.id === shape.name);
+            if (shapeDetailsElement) {
+                shapeDetailsElements.push(shapeDetailsElement);
+            } else {
+                shapeDetailsElements.push(new ShapeDetailsElement(shape));
+            }
         }
-        return li;
+        this.shapeDetailsElements = shapeDetailsElements;
+        const updatedElements = shapeDetailsElements.map((element) => element.buildShapeDetailsElement());
+        this.shapeDetailsSection.replaceChildren(...updatedElements);
     }
 }

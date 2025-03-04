@@ -12,7 +12,6 @@ export class Canvas {
 
     buildCanvas() {
         const canvas = document.createElement('div');
-        canvas.setAttribute('id', 'canvas-1');
         canvas.classList.add('canvas');
         this.svgContainer.addTo(canvas);
         return canvas;
