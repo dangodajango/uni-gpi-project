@@ -16,4 +16,10 @@ export class DefaultShapeMenu extends Menu {
             new TriangleButton(canvas)
         );
     }
+
+    buildMenu(): HTMLDivElement {
+        const menu = super.buildMenu();
+        menu.classList.add('shape-menu')
+        return menu;
+    }
 }

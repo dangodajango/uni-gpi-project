@@ -1,10 +1,11 @@
 import { Shape } from '../shape/Shape';
 
 export class ShapeDetailsSection {
-    private shapeDetailsSection!: HTMLDivElement;
+    private shapeDetailsSection!: HTMLUListElement;
 
     buildShapeDetailsSection() {
-        this.shapeDetailsSection = document.createElement('div');
+        this.shapeDetailsSection = document.createElement('ul');
+        this.shapeDetailsSection.classList.add('shape-details');
         return this.shapeDetailsSection;
     }
 
@@ -14,10 +15,11 @@ export class ShapeDetailsSection {
     }
 
     private createShapeDetailsDomElement(shape: Shape) {
-        const div = document.createElement('div');
+        const li = document.createElement('li');
         for (const property in shape.properties) {
             const propertyAccessors = shape.properties[property];
 
+            const div = document.createElement('div');
             const input = document.createElement('input');
             const label = document.createElement('label');
             label.textContent = `${property}: ${propertyAccessors.getProperty()}`;
@@ -33,7 +35,8 @@ export class ShapeDetailsSection {
             label.setAttribute('for', input.id);
 
             div.append(label, input);
+            li.append(div);
         }
-        return div;
+        return li;
     }
 }

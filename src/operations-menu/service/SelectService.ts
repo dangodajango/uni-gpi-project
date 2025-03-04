@@ -11,7 +11,7 @@ export class SelectService {
      * If shift key is not pressed, it means - only a single shape will be selected.
      */
     configureEventListener(shape: Shape) {
-        shape.addEventListener('click', (event) => {
+        return (event: Event) => {
             if (event instanceof MouseEvent) {
                 if (event.shiftKey) {
                     this.selectShapes(shape);
@@ -21,7 +21,7 @@ export class SelectService {
                 }
                 this.shapeDetailsSection.updateSection(this.currentlySelectedShapes);
             }
-        });
+        };
     }
 
     /**

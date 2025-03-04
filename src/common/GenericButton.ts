@@ -5,6 +5,7 @@ export class GenericButton {
 
     protected createButton(textContent: string, eventListenerFunction: () => void) {
         const button = document.createElement('button');
+        button.classList.add('button');
         button.textContent = textContent;
         button.addEventListener('click', eventListenerFunction);
         return button;

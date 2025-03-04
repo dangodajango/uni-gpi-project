@@ -20,10 +20,12 @@ export class SelectButton extends GenericButton implements ButtonBuilder {
 
     enableSelectAction() {
         if (!this.isSelectingEnabled) {
-            this.canvas.shapes.forEach((shape) => this.selectService.configureEventListener(shape));
+            this.canvas.shapes.forEach((shape) =>
+                shape.addEventListener('click', this.selectService.configureEventListener(shape))
+            );
             this.isSelectingEnabled = true;
         } else {
-            this.canvas.shapes.forEach((shape) => shape.removeEventListener());
+            this.canvas.shapes.forEach((shape) => shape.removeEventListener('click'));
             this.selectService.clear();
             this.isSelectingEnabled = false;
         }

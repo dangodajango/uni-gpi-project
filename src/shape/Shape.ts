@@ -17,7 +17,7 @@ export class Shape {
 
     constructor(
         protected readonly svgContainer: Svg,
-        public readonly name: string = `shape-${generateRandomIdentifier()}`,
+        public name: string = `shape-${generateRandomIdentifier()}`,
         public readonly stroke: Stroke = Shape.DEFAULT_STROKE,
         public readonly fill: Fill = Shape.DEFAULT_FILL
     ) {}
@@ -28,17 +28,113 @@ export class Shape {
         }
     }
 
-    removeEventListener() {
+    removeEventListener(event: string) {
         if (this.shape) {
-            this.shape.removeEventListener();
+            this.shape.off(event);
         }
     }
 
     get properties(): Property {
-        return { ...this.x, ...this.y, ...this.rotate, ...this.scale, ...this.skew };
+        return {
+            ...this.name_,
+            ...this.fillColor,
+            ...this.fillOpacity,
+            ...this.strokeColor,
+            ...this.strokeWidth,
+            ...this.strokeOpacity,
+            ...this.x,
+            ...this.y,
+            ...this.rotate,
+            ...this.scale,
+            ...this.skew,
+        };
     }
 
-    get x(): Property {
+    private get name_(): Property {
+        const shape = this.shape!;
+        return {
+            name: {
+                getProperty: () => this.name,
+                setProperty: (name: string) => {
+                    this.name = name;
+                    shape.id(name);
+                },
+                type: 'text',
+            },
+        };
+    }
+
+    private get fillColor(): Property {
+        const shape = this.shape!;
+        return {
+            fillColor: {
+                getProperty: () => this.fill.color,
+                setProperty: (color: string) => {
+                    this.fill.color = color;
+                    shape.fill({ ...this.fill });
+                },
+                type: 'color',
+            },
+        };
+    }
+
+    private get fillOpacity(): Property {
+        const shape = this.shape!;
+        return {
+            fillOpacity: {
+                getProperty: () => this.fill.opacity,
+                setProperty: (opacity: string) => {
+                    this.fill.opacity = Number(opacity);
+                    shape.fill({ ...this.fill });
+                },
+                type: 'number',
+            },
+        };
+    }
+
+    private get strokeColor(): Property {
+        const shape = this.shape!;
+        return {
+            strokeColor: {
+                getProperty: () => this.stroke.color,
+                setProperty: (color: string) => {
+                    this.stroke.color = color;
+                    shape.stroke({ ...this.stroke });
+                },
+                type: 'color',
+            },
+        };
+    }
+
+    private get strokeWidth(): Property {
+        const shape = this.shape!;
+        return {
+            strokeWidth: {
+                getProperty: () => this.stroke.width,
+                setProperty: (width: string) => {
+                    this.stroke.width = Number(width);
+                    shape.stroke({ ...this.stroke });
+                },
+                type: 'number',
+            },
+        };
+    }
+
+    private get strokeOpacity(): Property {
+        const shape = this.shape!;
+        return {
+            strokeOpacity: {
+                getProperty: () => this.stroke.opacity,
+                setProperty: (opacity: string) => {
+                    this.stroke.opacity = Number(opacity);
+                    shape.stroke({ ...this.stroke });
+                },
+                type: 'number',
+            },
+        };
+    }
+
+    private get x(): Property {
         const shape = this.shape!;
         return {
             x: {
@@ -49,7 +145,7 @@ export class Shape {
         };
     }
 
-    get y(): Property {
+    private get y(): Property {
         const shape = this.shape!;
         return {
             y: {

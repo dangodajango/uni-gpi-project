@@ -1,0 +1,43 @@
+.body {
+    margin: 2px;
+}
+
+.drawing-board {
+    width: 99vw;
+    height: 100vh;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto auto 1fr;
+
+    grid-template-areas:
+        'shape-menu shape-menu'
+        'operations-menu operations-menu'
+        'shape-details canvas';
+}
+
+.canvas {
+    grid-area: canvas;
+}
+
+.shape-menu {
+    grid-area: shape-menu;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.shape-details {
+    grid-area: shape-details;
+}
+
+.operations-menu {
+    grid-area: operations-menu;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.button {
+    margin: 2px;
+}
