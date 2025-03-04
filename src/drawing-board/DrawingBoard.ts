@@ -12,7 +12,7 @@ export class DrawingBoard {
         const drawingBoard = document.createElement('div');
         drawingBoard.classList.add('drawing-board');
 
-        const canvas = new Canvas({ width: 500, height: 500 });
+        const canvas = new Canvas();
         drawingBoard.append(canvas.buildCanvas());
 
         const shapeMenu = new DefaultShapeMenu(canvas);

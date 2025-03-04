@@ -6,14 +6,17 @@ export class Canvas {
 
     readonly shapes: Shape[] = [];
 
-    constructor(size: CanvasSize) {
-        this.svgContainer = SVG().size(size.width, size.height).fill('white');
+    constructor() {
+        this.svgContainer = SVG().fill('white');
     }
 
     buildCanvas() {
         const canvas = document.createElement('div');
         canvas.classList.add('canvas');
         this.svgContainer.addTo(canvas);
+        document.addEventListener('DOMContentLoaded', () => {
+            this.svgContainer.size(canvas.clientWidth, canvas.clientHeight);
+        });
         return canvas;
     }
 
@@ -21,8 +24,3 @@ export class Canvas {
         this.shapes.push(shape);
     }
 }
-
-export type CanvasSize = {
-    width: number;
-    height: number;
-};
