@@ -10,17 +10,19 @@ export class ShapeDetailsElement {
 
     buildShapeDetailsElement() {
         const li = document.createElement('li');
-        li.textContent = this.shape.name;
-        li.addEventListener('click', () => {
+        const title = document.createElement('span');
+        title.textContent = this.shape.name;
+        title.addEventListener('click', () => {
             if (!this.isCollapsed) {
                 li.append(this.buildShapePropertiesList());
                 this.isCollapsed = true;
             } else {
                 li.replaceChildren();
-                li.textContent = this.shape.name;
+                li.append(title);
                 this.isCollapsed = false;
             }
         });
+        li.append(title);
         return li;
     }
 

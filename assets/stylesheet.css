@@ -18,6 +18,8 @@
 
 .canvas {
     grid-area: canvas;
+    border: 2px solid #ccc; /* Adding border to canvas to differentiate */
+    padding: 10px;
 }
 
 .shape-menu {
@@ -25,19 +27,111 @@
     display: flex;
     align-items: center;
     background-color: white;
+    border: 2px solid #ccc; /* Adding outline to the shape menu */
+    padding: 10px;
 }
 
 .shape-details {
     grid-area: shape-details;
+    border: 2px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column; /* Makes the content stack vertically */
+    overflow-y: auto; /* Enables vertical scrolling */
 }
+
 
 .operations-menu {
     grid-area: operations-menu;
     display: flex;
     align-items: center;
     background-color: white;
+    border: 2px solid #ccc; /* Outline around the operations menu */
+    padding: 10px;
 }
 
 .button {
     margin: 2px;
+    padding: 8px 16px;
+    background-color: #4CAF50; /* Green background for buttons */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
+
+.button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* General styles */
+ul.shape-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.shape-details > li {
+    margin-bottom: 20px;
+}
+
+ul.shape-details li span {
+    font-weight: bold;
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+ul.shape-details ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+/* Label and input styling */
+ul.shape-details li label {
+    display: inline-block;
+    width: 120px;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+ul.shape-details li input {
+    width: calc(100% - 130px); /* Subtract label width and margin */
+    padding: 5px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Input types */
+ul.shape-details li input[type="color"] {
+    width: 50px;
+    padding: 0;
+}
+
+ul.shape-details li input[type="number"] {
+    width: 100px;
+}
+
+/* Hover effect for inputs */
+ul.shape-details li input[type="text"]:hover,
+ul.shape-details li input[type="number"]:hover,
+ul.shape-details li input[type="color"]:hover {
+    border-color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    ul.shape-details li {
+        margin-bottom: 15px;
+    }
+    ul.shape-details li label,
+    ul.shape-details li input {
+        width: 100%;
+    }
+    ul.shape-details li input[type="color"] {
+        width: 80px;
+    }
+}
+
