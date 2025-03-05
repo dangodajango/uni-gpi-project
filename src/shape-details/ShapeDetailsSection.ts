@@ -25,4 +25,9 @@ export class ShapeDetailsSection {
         const updatedElements = shapeDetailsElements.map((element) => element.buildShapeDetailsElement());
         this.shapeDetailsSection.replaceChildren(...updatedElements);
     }
+
+    clear() {
+        this.shapeDetailsElements = [];
+        this.shapeDetailsSection.replaceChildren();
+    }
 }

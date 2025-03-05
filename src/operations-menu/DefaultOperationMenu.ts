@@ -4,10 +4,17 @@ import { SelectButton } from './buttons/SelectButton';
 import { ShapeDetailsSection } from '../shape-details/ShapeDetailsSection';
 import { DownloadButton } from './buttons/DownloadButton';
 import { ImportButton } from './buttons/ImportButton';
+import { DeleteButton } from './buttons/DeleteButton';
 
 export class DefaultOperationMenu extends Menu {
     constructor(canvas: Canvas, shapeDetailsSection: ShapeDetailsSection) {
-        super(new SelectButton(canvas, shapeDetailsSection), new DownloadButton(canvas), new ImportButton(canvas));
+        const selectButton = new SelectButton(canvas, shapeDetailsSection);
+        super(
+            selectButton,
+            new DeleteButton(canvas, selectButton.selectService),
+            new DownloadButton(canvas),
+            new ImportButton(canvas)
+        );
     }
 
     buildMenu(): HTMLDivElement {

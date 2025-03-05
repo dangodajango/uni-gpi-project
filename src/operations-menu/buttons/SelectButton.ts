@@ -5,7 +5,7 @@ import { ShapeDetailsSection } from '../../shape-details/ShapeDetailsSection';
 import { Canvas } from '../../canvas/Canvas';
 
 export class SelectButton extends GenericButton implements ButtonBuilder {
-    private readonly selectService: SelectService;
+    readonly selectService: SelectService;
 
     constructor(canvas: Canvas, shapeDetailsSection: ShapeDetailsSection) {
         super(canvas);

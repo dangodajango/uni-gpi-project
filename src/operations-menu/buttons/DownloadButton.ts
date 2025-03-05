@@ -15,7 +15,7 @@ export class DownloadButton extends GenericButton implements ButtonBuilder {
         return super.createButton('DOWNLOAD', this.downloadSvg.bind(this));
     }
 
-    downloadSvg() {
+    private downloadSvg() {
         this.downloadService.downloadSvg();
     }
 }

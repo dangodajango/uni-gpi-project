@@ -6,6 +6,10 @@ export class SelectService {
 
     private currentlySelectedShapes: Shape[] = [];
 
+    get selectedShapes() {
+        return [...this.currentlySelectedShapes];
+    }
+
     /**
      * If shift key is pressed, it means - multiple shapes will be selected.
      * If shift key is not pressed, it means - only a single shape will be selected.
@@ -40,5 +44,6 @@ export class SelectService {
 
     clear() {
         this.currentlySelectedShapes = [];
+        this.shapeDetailsSection.clear();
     }
 }

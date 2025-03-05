@@ -23,4 +23,12 @@ export class Canvas {
     storeShape(shape: Shape) {
         this.shapes.push(shape);
     }
+
+    removeShape(shape: Shape) {
+        const index = this.shapes.indexOf(shape);
+        if (index !== -1) {
+            this.shapes.splice(index, 1);
+            this.svgContainer.removeElement(shape.shape!);
+        }
+    }
 }
