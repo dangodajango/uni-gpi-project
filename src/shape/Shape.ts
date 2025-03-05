@@ -1,4 +1,4 @@
-import { Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
+import { MatrixExtract, Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
 import { generateRandomIdentifier } from '../utils/RandomIdentifierGenerator';
 
 export class Shape {
@@ -48,6 +48,10 @@ export class Shape {
             ...this.scale,
             ...this.skew,
         };
+    }
+
+    set transform(transform: MatrixExtract) {
+        this.shape!.transform(transform);
     }
 
     private get name_(): Property {

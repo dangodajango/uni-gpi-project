@@ -18,31 +18,55 @@ export class Ellipse extends Shape {
     }
 
     get properties(): Property {
-        return { ...this.radiusX, ...this.radiusY, ...super.properties };
+        return { ...this.rx, ...this.ry, ...this.cx, ...this.cy, ...super.properties };
     }
 
-    get radiusX(): Property {
+    get rx(): Property {
         const ellipse = this.shape as SvgEllipse;
         return {
-            radiusX: {
+            rx: {
                 getProperty: () => ellipse.attr('rx'),
-                setProperty: (radiusX: string) => {
-                    const radiusY = ellipse.attr('ry');
-                    ellipse.radius(Number(radiusX), Number(radiusY));
+                setProperty: (rx: string) => {
+                    const ry = ellipse.attr('ry');
+                    ellipse.radius(Number(rx), Number(ry));
                 },
                 type: 'number',
             },
         };
     }
 
-    get radiusY(): Property {
+    get ry(): Property {
         const ellipse = this.shape as SvgEllipse;
         return {
-            radiusY: {
+            ry: {
                 getProperty: () => ellipse.attr('ry'),
-                setProperty: (radiusY: string) => {
-                    const radiusX = ellipse.attr('rx');
-                    ellipse.radius(Number(radiusX), Number(radiusY));
+                setProperty: (ry: string) => {
+                    const rx = ellipse.attr('rx');
+                    ellipse.radius(Number(rx), Number(ry));
+                },
+                type: 'number',
+            },
+        };
+    }
+
+    get cx(): Property {
+        const ellipse = this.shape as SvgEllipse;
+        return {
+            cx: {
+                getProperty: () => ellipse.attr('cx'),
+                setProperty: (cx: string) => ellipse.cx(Number(cx)),
+                type: 'number',
+            },
+        };
+    }
+
+    get cy(): Property {
+        const ellipse = this.shape as SvgEllipse;
+        return {
+            cy: {
+                getProperty: () => ellipse.attr('cy'),
+                setProperty: (cy: string) => {
+                    ellipse.cy(Number(cy))
                 },
                 type: 'number',
             },
