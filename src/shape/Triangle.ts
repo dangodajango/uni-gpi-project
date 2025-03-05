@@ -16,4 +16,8 @@ export class Triangle extends Shape {
             .fill({ ...this.fill });
         this.shape.id(this.name);
     }
+
+    protected createCloneObject(): Shape {
+        return new Triangle(this.svgContainer, this.stroke, this.fill, this.name);
+    }
 }

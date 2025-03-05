@@ -5,6 +5,7 @@ import { ShapeDetailsSection } from '../shape-details/ShapeDetailsSection';
 import { DownloadButton } from './buttons/DownloadButton';
 import { ImportButton } from './buttons/ImportButton';
 import { DeleteButton } from './buttons/DeleteButton';
+import { CopyButton } from './buttons/CopyButton';
 
 export class DefaultOperationMenu extends Menu {
     constructor(canvas: Canvas, shapeDetailsSection: ShapeDetailsSection) {
@@ -12,6 +13,7 @@ export class DefaultOperationMenu extends Menu {
         super(
             selectButton,
             new DeleteButton(canvas, selectButton.selectService),
+            new CopyButton(canvas, selectButton.selectService),
             new DownloadButton(canvas),
             new ImportButton(canvas)
         );

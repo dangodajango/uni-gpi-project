@@ -34,6 +34,22 @@ export class Shape {
         }
     }
 
+    clone() {
+        const clonedObject = this.createCloneObject();
+        for (const prop in clonedObject.properties) {
+            clonedObject.properties[prop].setProperty(this.properties[prop].getProperty());
+        }
+        const name = this.properties['name'].getProperty() as string;
+        clonedObject.properties['name'].setProperty(name.replace(/-.*/, `-${generateRandomIdentifier()}`));
+        clonedObject.properties['x'].setProperty(0);
+        clonedObject.properties['y'].setProperty(0);
+        return clonedObject;
+    }
+
+    protected createCloneObject() {
+        return new Shape(this.svgContainer, this.name, this.stroke, this.fill);
+    }
+
     get properties(): Property {
         return {
             ...this.name_,

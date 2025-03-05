@@ -12,6 +12,10 @@ export class Line extends Shape {
         this.shape.id(this.name);
     }
 
+    protected createCloneObject(): Shape {
+        return new Line(this.svgContainer, this.stroke, this.fill, this.name);
+    }
+
     get properties(): Property {
         return { ...this.x1, ...this.x2, ...this.y1, ...this.y2, ...super.properties };
     }

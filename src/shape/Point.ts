@@ -14,6 +14,10 @@ export class Point extends Shape {
         this.shape.id(this.name);
     }
 
+    protected createCloneObject(): Shape {
+        return new Point(this.svgContainer, this.stroke, this.fill, this.name);
+    }
+
     get properties(): Property {
         return { ...this.cx, ...this.cy, ...this.r, ...super.properties };
     }

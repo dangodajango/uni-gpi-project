@@ -17,6 +17,10 @@ export class Ellipse extends Shape {
         this.shape.id(this.name);
     }
 
+    protected createCloneObject(): Shape {
+        return new Ellipse(this.svgContainer, this.stroke, this.fill, this.name);
+    }
+
     get properties(): Property {
         return { ...this.rx, ...this.ry, ...this.cx, ...this.cy, ...super.properties };
     }

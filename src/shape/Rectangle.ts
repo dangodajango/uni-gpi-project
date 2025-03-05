@@ -17,6 +17,10 @@ export class Rectangle extends Shape {
         this.shape.id(this.name);
     }
 
+    protected createCloneObject(): Shape {
+        return new Rectangle(this.svgContainer, this.stroke, this.fill, this.name);
+    }
+
     get properties(): Property {
         return { ...this.width, ...this.height, ...super.properties };
     }
