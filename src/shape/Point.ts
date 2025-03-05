@@ -1,5 +1,5 @@
-import { Fill, Shape, Stroke } from './Shape';
-import { Svg } from '@svgdotjs/svg.js';
+import { Fill, Property, Shape, Stroke } from './Shape';
+import { Circle, Svg } from '@svgdotjs/svg.js';
 import { generateRandomIdentifier } from '../utils/RandomIdentifierGenerator';
 
 export class Point extends Shape {
@@ -10,7 +10,44 @@ export class Point extends Shape {
         name: string = `point-${generateRandomIdentifier()}`
     ) {
         super(svgContainer, name, stroke, fill);
-        this.shape = this.svgContainer.circle(2).fill({ ...this.fill });
+        this.shape = this.svgContainer.circle(5).fill({ ...this.fill });
         this.shape.id(this.name);
+    }
+
+    get properties(): Property {
+        return { ...this.cx, ...this.cy, ...this.r, ...super.properties };
+    }
+
+    private get cx(): Property {
+        const point = this.shape as Circle;
+        return {
+            cx: {
+                getProperty: () => point.cx(),
+                setProperty: (cx: string) => point.cx(Number(cx)),
+                type: 'number',
+            },
+        };
+    }
+
+    private get cy(): Property {
+        const point = this.shape as Circle;
+        return {
+            cy: {
+                getProperty: () => point.cy(),
+                setProperty: (cy: string) => point.cy(Number(cy)),
+                type: 'number',
+            },
+        };
+    }
+
+    private get r(): Property {
+        const point = this.shape as Circle;
+        return {
+            r: {
+                getProperty: () => point.rx(),
+                setProperty: (r: string) => point.radius(Number(r)),
+                type: 'number',
+            },
+        };
     }
 }

@@ -65,9 +65,7 @@ export class Ellipse extends Shape {
         return {
             cy: {
                 getProperty: () => ellipse.attr('cy'),
-                setProperty: (cy: string) => {
-                    ellipse.cy(Number(cy))
-                },
+                setProperty: (cy: string) => ellipse.cy(Number(cy)),
                 type: 'number',
             },
         };
